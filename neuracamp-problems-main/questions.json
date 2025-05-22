@@ -1,0 +1,387 @@
+[
+  {
+    "qid": 22,
+    "title": "Sigmoid Activation Function Understanding",
+    "qtext": "Write a Python function that computes the output of the sigmoid activation function given an input value z. The function should return the output rounded to four decimal places.\n\nExample:\nInput:\nz = 0\n\nOutput:\n0.5\n\nReasoning:\nThe sigmoid function is defined as σ(z) = 1 / (1 + exp(-z)). For z = 0, exp(-0) = 1, hence the output is 1 / (1 + 1) = 0.5.",
+    "inputFormat": "z = 0",
+    "outputFormat": "0.5",
+    "reason": "The sigmoid function is defined as σ(z) = 1 / (1 + exp(-z)). For z = 0, exp(-0) = 1, hence the output is 1 / (1 + 1) = 0.5.",
+    "difficulty":"easy",
+    "area" : "DL"
+  },
+
+  {
+    "qid": 24,
+    "title": "Single Neuron",
+    "qtext": "Write a Python function that simulates a single neuron with a sigmoid activation function for binary classification, handling multidimensional input features. The function should take a list of feature vectors (each vector representing multiple features for an example), associated true binary labels, and the neuron's weights (one for each feature) and bias as input. It should return the predicted probabilities after sigmoid activation and the mean squared error between the predicted probabilities and the true labels, both rounded to four decimal places.\n\nExample:\nInput:\n```python\nfeatures = [[0.5, 1.0], [-1.5, -2.0], [2.0, 1.5]]\nlabels = [0, 1, 0]\nweights = [0.7, -0.4]\nbias = -0.1\n```\nOutput:\n```python\n([0.4626, 0.4134, 0.6682], 0.3349)\n```\n\nReasoning:\nFor each input vector, the weighted sum is calculated by multiplying each feature by its corresponding weight, adding these up along with the bias, then applying the sigmoid function to produce a probability. The MSE is calculated as the average squared difference between each predicted probability and the corresponding true label.",
+    "inputFormat": "Four inputs:\n- A list of lists representing feature vectors.\n- A list of binary labels (0 or 1).\n- A list of neuron weights (one weight per feature).\n- A bias term (float).",
+    "outputFormat": "One output:\n- A tuple containing:\n  - A list of predicted probabilities (rounded to 4 decimal places).\n  - The mean squared error between predictions and true labels (rounded to 4 decimal places).",
+    "reason": "The neuron combines inputs linearly with weights and bias, applies the sigmoid activation to produce probabilities, and the mean squared error evaluates the prediction quality against the true labels.",
+    "difficulty":"easy",
+    "area" : "DL"
+  },
+  
+  {
+    "qid": 44,
+    "title": "Leaky ReLU Activation Function",
+    "qtext": "Write a Python function leaky_relu that implements the Leaky Rectified Linear Unit (Leaky ReLU) activation function. The function should take a float z as input and an optional float alpha, with a default value of 0.01, as the slope for negative inputs. The function should return the value after applying the Leaky ReLU function.\n\nExample:\nInput:\nprint(leaky_relu(0))\nprint(leaky_relu(1))\nprint(leaky_relu(-1))\nprint(leaky_relu(-2, alpha=0.1))\n\nOutput:\n0\n1\n-0.01\n-0.2\n\nReasoning:\nFor z = 0, the output is 0.\nFor z = 1, the output is 1.\nFor z = -1, the output is -0.01 (0.01 * -1).\nFor z = -2 with alpha = 0.1, the output is -0.2 (0.1 * -2).",
+    "inputFormat": "print(leaky_relu(0))\nprint(leaky_relu(1))\nprint(leaky_relu(-1))\nprint(leaky_relu(-2, alpha=0.1))",
+    "outputFormat": "0\n1\n-0.01\n-0.2",
+    "reason": "For z = 0, the output is 0.\nFor z = 1, the output is 1.\nFor z = -1, the output is -0.01 (0.01 * -1).\nFor z = -2 with alpha = 0.1, the output is -0.2 (0.1 * -2).",
+    "difficulty":"easy",
+    "area" : "DL"
+  },
+
+  {
+    "qid": 85,
+    "title": "Positional Encoding Calculator",
+    "qtext": "Write a Python function to implement the Positional Encoding layer for Transformers. The function should calculate positional encodings for a sequence length (position) and model dimensionality (d_model) using sine and cosine functions as specified in the Transformer architecture. The function should return -1 if position is 0, or if d_model is less than or equal to 0. The output should be a numpy array of type float16.\n\nExample:\nInput:\n```python\nposition = 2\nd_model = 8\n```\nOutput:\n```python\n[[[ 0., 0., 0., 0., 1., 1., 1., 1.],\n  [ 0.8413, 0.0998, 0.01, 0.001, 0.5405, 0.995, 1., 1.]]]\n```\n\nReasoning:\nThe function computes the positional encoding by calculating sine values for even indices and cosine values for odd indices, ensuring that the encoding provides the required positional information following the Transformer design.",
+    "inputFormat": "Two inputs:\n- position: Integer representing the sequence length.\n- d_model: Integer representing the model dimensionality.",
+    "outputFormat": "One output:\n- A numpy array of shape (1, position, d_model) with dtype float16 containing the positional encodings, or -1 if input conditions are invalid.",
+    "reason": "Positional encodings allow the Transformer model to incorporate information about the order of tokens without recurrence or convolution. Sine functions are applied to even indices and cosine functions to odd indices to generate a unique encoding for each position.",
+    "difficulty":"hard",
+    "area" : "DL"
+  },
+
+  {
+    "qid": 94,
+    "title": "Implement Multi-Head Attention",
+    "qtext": "Implement the multi-head attention mechanism, a critical component of transformer models. Given Query (Q), Key (K), and Value (V) matrices, compute the attention outputs for multiple heads and concatenate the results.\n\nExample:\nInput:\nQ = np.array([[1, 0], [0, 1]]), K = np.array([[1, 0], [0, 1]]), V = np.array([[1, 0], [0, 1]]), n_heads = 2\n\nOutput:\n[[1., 0.], [0., 1.]]\n\nReasoning:\nMulti-head attention is computed for 2 heads using the input Q, K, and V matrices. The resulting outputs for each head are concatenated to form the final attention output.",
+    "inputFormat": "Q = np.array([[1, 0], [0, 1]]), K = np.array([[1, 0], [0, 1]]), V = np.array([[1, 0], [0, 1]]), n_heads = 2",
+    "outputFormat": "[[1., 0.], [0., 1.]]",
+    "reason": "Multi-head attention is computed for 2 heads using the input Q, K, and V matrices. The resulting outputs for each head are concatenated to form the final attention output.",
+    "difficulty":"hard",
+    "area" : "DL"
+  },
+
+  {
+  "qid": 25,
+  "title": "Single Neuron with Backpropagation",
+  "qtext": "Write a Python function that simulates a single neuron with sigmoid activation, and implements backpropagation to update the neuron's weights and bias. The function should take a list of feature vectors, associated true binary labels, initial weights, initial bias, a learning rate, and the number of epochs. The function should update the weights and bias using gradient descent based on the MSE loss, and return the updated weights, bias, and a list of MSE values for each epoch, each rounded to four decimal places.\n\nExample:\nInput:\nfeatures = [[1.0, 2.0], [2.0, 1.0], [-1.0, -2.0]], labels = [1, 0, 0], initial_weights = [0.1, -0.2], initial_bias = 0.0, learning_rate = 0.1, epochs = 2\n\nOutput:\nupdated_weights = [0.1036, -0.1425], updated_bias = -0.0167, mse_values = [0.3033, 0.2942]\n\nReasoning:\nThe neuron receives feature vectors and computes predictions using the sigmoid activation. Based on the predictions and true labels, the gradients of MSE loss with respect to weights and bias are computed and used to update the model parameters across epochs.",
+  "inputFormat": "features = [[1.0, 2.0], [2.0, 1.0], [-1.0, -2.0]], labels = [1, 0, 0], initial_weights = [0.1, -0.2], initial_bias = 0.0, learning_rate = 0.1, epochs = 2",
+  "outputFormat": "updated_weights = [0.1036, -0.1425], updated_bias = -0.0167, mse_values = [0.3033, 0.2942]",
+  "reason": "The neuron receives feature vectors and computes predictions using the sigmoid activation. Based on the predictions and true labels, the gradients of MSE loss with respect to weights and bias are computed and used to update the model parameters across epochs.",
+  "difficulty":"med",
+  "area" : "DL"
+  },
+
+  {
+    "qid": 87,
+    "title": "Adam Optimizer",
+    "qtext": "Implement the Adam optimizer update step function. Your function should take the current parameter value, gradient, and moving averages as inputs, and return the updated parameter value and new moving averages. The function should also handle scalar and array inputs and include bias correction for the moving averages.\n\nExample:\nInput:\nparameter = 1.0, grad = 0.1, m = 0.0, v = 0.0, t = 1\n\nOutput:\n(0.999, 0.01, 0.0001)\n\nReasoning:\nThe Adam optimizer computes updated values for the parameter, first moment (m), and second moment (v) using bias-corrected estimates of gradients. With input values parameter=1.0, grad=0.1, m=0.0, v=0.0, and t=1, the updated parameter becomes 0.999.",
+    "inputFormat": "parameter = 1.0, grad = 0.1, m = 0.0, v = 0.0, t = 1",
+    "outputFormat": "(0.999, 0.01, 0.0001)",
+    "reason": "The Adam optimizer computes updated values for the parameter, first moment (m), and second moment (v) using bias-corrected estimates of gradients. With input values parameter=1.0, grad=0.1, m=0.0, v=0.0, and t=1, the updated parameter becomes 0.999.",
+    "difficulty":"med",
+    "area" : "DL"
+  },
+
+  {
+    "qid": 1,
+    "title": "Matrix-Vector Dot Product",
+    "qtext": "Write a Python function that computes the dot product of a matrix and a vector. The function should return a list representing the resulting vector if the operation is valid, or -1 if the matrix and vector dimensions are incompatible. A matrix (a list of lists) can be dotted with a vector (a list) only if the number of columns in the matrix equals the length of the vector. For example, an n x m matrix requires a vector of length m.\n\nExample:\nInput:\na = [[1, 2], [2, 4]], b = [1, 2]\nOutput:\n[5, 10]\nReasoning:\nRow 1: (1 * 1) + (2 * 2) = 1 + 4 = 5; Row 2: (1 * 2) + (2 * 4) = 2 + 8 = 10",
+    "inputFormat": "a = [[1, 2], [2, 4]], b = [1, 2]",
+    "outputFormat": "[5, 10]",
+    "reason": "The function should return a list representing the resulting vector if the operation is valid, or -1 if the matrix and vector dimensions are incompatible.",
+    "difficulty":"easy",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 65,
+    "title": "Implement Compressed Row Sparse Matrix (CSR) Format Conversion",
+    "qtext": "Task: Convert a Dense Matrix to Compressed Row Sparse (CSR) Format\n\nYour task is to implement a function that converts a given dense matrix into the Compressed Row Sparse (CSR) format, an efficient storage representation for sparse matrices. The CSR format only stores non-zero elements and their positions, significantly reducing memory usage for matrices with a large number of zeros.\n\nWrite a function compressed_row_sparse_matrix(dense_matrix) that takes a 2D list dense_matrix as input and returns a tuple containing three lists:\n\n- Values array: List of all non-zero elements in row-major order.\n- Column indices array: Column index for each non-zero element in the values array.\n- Row pointer array: Cumulative number of non-zero elements per row, indicating the start of each row in the values array.\n\nExample:\n\nInput:\n```python\ndense_matrix = [\n    [1, 0, 0, 0],\n    [0, 2, 0, 0],\n    [3, 0, 4, 0],\n    [1, 0, 0, 5]\n]\n\nvals, col_idx, row_ptr = compressed_row_sparse_matrix(dense_matrix)\nprint(\"Values array:\", vals)\nprint(\"Column indices array:\", col_idx)\nprint(\"Row pointer array:\", row_ptr)\n```\n\nOutput:\n```python\nValues array: [1, 2, 3, 4, 1, 5]\nColumn indices array: [0, 1, 0, 2, 0, 3]\nRow pointer array: [0, 1, 2, 4, 6]\n```\n\nReasoning:\nThe dense matrix is converted to CSR format with the values array containing non-zero elements, column indices array storing the corresponding column index, and row pointer array indicating the start of each row in the values array.",
+    "inputFormat": "dense_matrix: A 2D list representing the dense matrix.",
+    "outputFormat": "A tuple of three lists: (values_array, column_indices_array, row_pointer_array)",
+    "reason": "The dense matrix is converted to CSR format by extracting non-zero elements and their column positions, and tracking row starts for efficient storage and operations.",
+    "difficulty":"easy",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 66,
+    "title": "Implement Orthogonal Projection of a Vector onto a Line",
+    "qtext": "Task: Compute the Orthogonal Projection of a Vector\n\nYour task is to implement a function that calculates the orthogonal projection of a vector v onto another vector L. This projection results in the vector on L that is closest to v.\n\nWrite a function `orthogonal_projection(v, L)` that takes in two lists, `v` (the vector to be projected) and `L` (the line vector), and returns the orthogonal projection of `v` onto `L`. The function should output a list representing the projection vector rounded to three decimal places.\n\nExample:\n\nInput:\n```python\nv = [3, 4]\nL = [1, 0]\nprint(orthogonal_projection(v, L))\n```\n\nOutput:\n```python\n[3.0, 0.0]\n```\n\nReasoning:\nThe orthogonal projection of vector [3, 4] onto the line defined by [1, 0] results in the projection vector [3, 0], which lies on the line [1, 0].",
+    "inputFormat": "Two inputs:\n- `v` (list): A list representing the vector to be projected.\n- `L` (list): A list representing the line vector.",
+    "outputFormat": "A list representing the projected vector, rounded to three decimal places.",
+    "reason": "The orthogonal projection of a vector onto another vector finds the closest point along that vector, crucial for applications in graphics, optimization, and dimension reduction.",
+    "difficulty":"easy",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 84,
+    "title": "Phi Transformation for Polynomial Features",
+    "qtext": "Write a Python function to perform a Phi Transformation that maps input features into a higher-dimensional space by generating polynomial features. The transformation allows models like linear regression to fit nonlinear data by introducing new feature dimensions that represent polynomial combinations of the original input features. The function should take a list of numerical data and a degree as inputs, and return a nested list where each inner list represents the transformed features of a data point. If the degree is less than 0, the function should return an empty list.\n\nExample:\n\nInput:\n```python\ndata = [1.0, 2.0]\ndegree = 2\n```\n\nOutput:\n```python\n[[1.0, 1.0, 1.0], [1.0, 2.0, 4.0]]\n```\n\nReasoning:\nThe Phi Transformation generates polynomial features for each data point up to the specified degree. For data = [1.0, 2.0] and degree = 2, the transformation creates a nested list where each row contains powers of the data point from 0 to 2.",
+    "inputFormat": "Two inputs:\n- `data` (list of floats or integers): Input data points.\n- `degree` (integer): Degree up to which powers should be generated.\n\nConstraints:\n- If degree < 0, return an empty list.",
+    "outputFormat": "A nested list where each row contains powers of the corresponding data point from 0 to degree.",
+    "reason": "The Phi Transformation generates polynomial features from data points, enabling models to better capture nonlinear relationships by introducing polynomial feature expansions.",
+    "difficulty":"easy",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 12,
+    "title": "Singular Value Decomposition (SVD)",
+    "qtext": "Write a Python function that approximates the Singular Value Decomposition on a 2×2 matrix by using the Jacobi method and without using numpy svd function. (You could, but you wouldn't learn anything.) Return the result in this format.\n\nExample:\n\nInput:\n```python\na = [[2, 1], [1, 2]]\n```\n\nOutput:\n```python\n(array([[-0.70710678, -0.70710678],\n        [-0.70710678,  0.70710678]]),\n array([3., 1.]),\n array([[-0.70710678, -0.70710678],\n        [-0.70710678,  0.70710678]]))\n```\n\nReasoning:\nU is the first matrix, Sigma is the second vector, and V is the third matrix.",
+    "inputFormat": "One input:\n- `a` (list of lists): A 2x2 matrix for which to compute the SVD.",
+    "outputFormat": "A tuple containing three elements:\n- A 2x2 array (U matrix)\n- A 1D array (Singular values vector)\n- A 2x2 array (V matrix)",
+    "reason": "Using the Jacobi method to approximate SVD reveals how the matrix can be decomposed into orthogonal matrices and a diagonal matrix without relying on built-in high-level functions, enhancing conceptual understanding.",
+    "difficulty":"hard",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 28,
+    "title": "SVD of a 2×2 Matrix using eigen values & vectors",
+    "qtext": "Given a 2×2 matrix, write a Python function to compute its Singular Value Decomposition (SVD). The function should return the matrices U, S, and V such that A = U * S * V, use the method described in this post: https://metamerist.blogspot.com/2006/10/linear-algebra-for-graphics-geeks-svd.html\n\nExample:\n\nInput:\n```python\nA = [[-10, 8],\n     [10, -1]]\n```\n\nOutput:\n```python\n(array([[ 0.8, -0.6],\n        [-0.6, -0.8]]),\n array([15.65247584, 4.47213595]),\n array([[-0.89442719, 0.4472136],\n        [-0.4472136, -0.89442719]]))\n```\n\nReasoning:\nThe SVD of the matrix A is calculated using the eigenvalues and eigenvectors of AᵀA and AAᵀ. The singular values are the square roots of the eigenvalues, and the eigenvectors form the columns of matrices U and V.",
+    "inputFormat": "One input:\n- `A` (list of lists): A 2×2 matrix to perform Singular Value Decomposition on.",
+    "outputFormat": "A tuple containing:\n- A 2x2 array (U matrix)\n- A 1D array (Singular values)\n- A 2x2 array (V matrix)",
+    "reason": "The SVD of the matrix is calculated using the eigenvalues and eigenvectors of AᵀA and AAᵀ. The singular values are the square roots of the eigenvalues, and the eigenvectors form the columns of matrices U and V.",
+    "difficulty":"hard",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 63,
+    "title": "Implement the Conjugate Gradient Method for Solving Linear Systems",
+    "qtext": "Task: Implement the Conjugate Gradient Method for Solving Linear Systems\n\nYour task is to implement the Conjugate Gradient (CG) method, an efficient iterative algorithm for solving large, sparse, symmetric, positive-definite linear systems. Given a matrix A and a vector b, the algorithm will solve for x in the system (Ax = b).\n\nWrite a function conjugate_gradient(A, b, n, x0=None, tol=1e-8) that performs the Conjugate Gradient method as follows:\n\nA: A symmetric, positive-definite matrix representing the linear system.\nb: The vector on the right side of the equation.\nn: Maximum number of iterations.\nx0: Initial guess for the solution vector.\ntol: Tolerance for stopping criteria.\n\nThe function should return the solution vector x.\n\nExample:\n\nInput:\n```python\nA = np.array([[4, 1], [1, 3]])\nb = np.array([1, 2])\nn = 5\n\nprint(conjugate_gradient(A, b, n))\n```\n\nOutput:\n```python\n[0.09090909, 0.63636364]\n```\n\nReasoning:\nThe Conjugate Gradient method is applied to the linear system Ax = b with the given matrix A and vector b. The algorithm iteratively refines the solution to converge to the exact solution.",
+    "inputFormat": "Five inputs:\n- A (NumPy array): Symmetric, positive-definite 2D array.\n- b (NumPy array): 1D array representing the right-hand side vector.\n- n (integer): Maximum number of iterations.\n- x0 (optional NumPy array): Initial guess (default is zero vector).\n- tol (float): Tolerance for convergence (default is 1e-8).",
+    "outputFormat": "A 1D NumPy array representing the approximate solution vector x.",
+    "reason": "The Conjugate Gradient method is efficient for solving symmetric positive-definite systems, providing faster convergence compared to methods like steepest descent by ensuring search directions are A-orthogonal.",
+    "difficulty":"hard",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 6,
+    "title": "Calculate Eigenvalues of a Matrix",
+    "qtext": "Write a Python function that calculates the eigenvalues of a 2x2 matrix. The function should return a list containing the eigenvalues, sort values from highest to lowest.\n\nExample:\n\nInput:\n```python\nmatrix = [[2, 1], [1, 2]]\n```\n\nOutput:\n```python\n[3.0, 1.0]\n```\n\nReasoning:\nThe eigenvalues of the matrix are calculated using the characteristic equation of the matrix, which for a 2x2 matrix is\n\n$$\n\\lambda^2 - \\text{trace}(A)\\lambda + \\det(A) = 0\n$$\n\nwhere \\( \\lambda \\) are the eigenvalues.",
+    "inputFormat": "One input:\n- `matrix` (list of lists): A 2x2 matrix represented as a list of two lists, each containing two numbers.",
+    "outputFormat": "A list of two floats, representing the eigenvalues sorted from highest to lowest.",
+    "reason": "The eigenvalues provide critical insight into matrix behavior, used for analyzing stability, transformations, and machine learning applications like PCA.",
+    "difficulty":"med",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 11,
+    "title": "Solve Linear Equations using Jacobi Method",
+    "qtext": "Write a Python function that uses the Jacobi method to solve a system of linear equations given by Ax = b. The function should iterate n times, rounding each intermediate solution to four decimal places, and return the approximate solution x.\n\nExample:\n\nInput:\n```python\nA = [[5, -2, 3], [-3, 9, 1], [2, -1, -7]]\nb = [-1, 2, 3]\nn = 2\n```\n\nOutput:\n```python\n[0.146, 0.2032, -0.5175]\n```\n\nReasoning:\nThe Jacobi method iteratively solves each equation for x[i] using the formula:\n\n$$\nx[i] = \\frac{1}{a_{ii}} \\left( b[i] - \\sum_{j \\neq i} a_{ij}x[j] \\right)\n$$\n\nwhere \\( a_{ii} \\) is the diagonal element of A and \\( a_{ij} \\) are the off-diagonal elements.",
+    "inputFormat": "Three inputs:\n- `A` (list of lists): Coefficient matrix.\n- `b` (list): Right-hand side vector.\n- `n` (integer): Number of iterations to perform.",
+    "outputFormat": "A list of floats representing the approximate solution vector x, rounded to four decimal places.",
+    "reason": "The Jacobi method provides an iterative approach to solving linear systems, especially useful when direct methods are computationally too expensive for large matrices.",
+    "difficulty":"med",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 48,
+    "title": "Implement Reduced Row Echelon Form (RREF) Function",
+    "qtext": "In this problem, your task is to implement a function that converts a given matrix into its Reduced Row Echelon Form (RREF). The RREF of a matrix is a special form where each leading entry in a row is 1, and all other elements in the column containing the leading 1 are zeros, except for the leading 1 itself.\n\nHowever, there are some additional details to keep in mind:\n\n- Diagonal entries can be 0 if the matrix is reducible (i.e., the row corresponding to that position can be eliminated entirely).\n- Some rows may consist entirely of zeros.\n- If a column contains a pivot (a leading 1), all other entries in that column should be zero.\n\nYour task is to implement the RREF algorithm, which must handle these cases and convert any given matrix into its RREF.\n\nExample:\n\nInput:\n```python\nimport numpy as np\n\nmatrix = np.array([\n    [1, 2, -1, -4],\n    [2, 3, -1, -11],\n    [-2, 0, -3, 22]\n])\n\nrref_matrix = rref(matrix)\nprint(rref_matrix)\n```\n\nOutput:\n```python\n# array([\n#    [ 1.  0.  0. -8.],\n#    [ 0.  1.  0.  1.],\n#    [-0. -0.  1. -2.]\n# ])\n```\n\nReasoning:\nThe given matrix is converted to its Reduced Row Echelon Form (RREF) where each leading entry is 1, and all other entries in the leading columns are zero.",
+    "inputFormat": "One input:\n- `matrix` (NumPy array): A 2D NumPy array representing the input matrix to be reduced.",
+    "outputFormat": "A NumPy array representing the matrix converted to its Reduced Row Echelon Form (RREF).",
+    "reason": "The RREF form simplifies solving systems of linear equations and understanding the fundamental properties of a matrix, such as its rank.",
+    "difficulty":"med",
+    "area" : "LA"
+  },
+
+  {
+    "qid": 14,
+    "title": "Linear Regression Using Normal Equation",
+    "qtext": "Write a Python function that performs linear regression using the normal equation. The function should take a matrix X (features) and a vector y (target) as input, and return the coefficients of the linear regression model. Round your answer to four decimal places, -0.0 is a valid result for rounding a very small number.\n\nExample:\nInput:\nX = [[1, 1], [1, 2], [1, 3]], y = [1, 2, 3]\nOutput:\n[0.0, 1.0]\n\nReasoning:\nThe linear model is y = 0.0 + 1.0*x, perfectly fitting the input data.",
+    "inputFormat": "X = [[1, 1], [1, 2], [1, 3]], y = [1, 2, 3]",
+    "outputFormat": "[0.0, 1.0]",
+    "reason": "The linear model is y = 0.0 + 1.0*x, perfectly fitting the input data.",
+    "difficulty":"easy",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 52,
+    "title": "Implement Recall Metric in Binary Classification",
+    "qtext": "Task: Implement Recall in Binary Classification\n\nYour task is to implement the recall metric in a binary classification setting. Recall is a performance measure that evaluates how effectively a machine learning model identifies positive instances from all the actual positive cases in a dataset.\n\nYou need to write a function recall(y_true, y_pred) that calculates the recall metric. The function should accept two inputs:\n\ny_true: A list of true binary labels (0 or 1) for the dataset.\ny_pred: A list of predicted binary labels (0 or 1) from the model.\n\nYour function should return the recall value rounded to three decimal places. If the denominator (TP + FN) is zero, the recall should be 0.0 to avoid division by zero.\n\nExample:\nInput:\nimport numpy as np\n\ny_true = np.array([1, 0, 1, 1, 0, 1])\ny_pred = np.array([1, 0, 1, 0, 0, 1])\n\nprint(recall(y_true, y_pred))\nOutput:\n# 0.75\n\nReasoning:\nThe recall value for the given true labels and predicted labels is 0.75. The model correctly identified 3 out of 4 positive instances in the dataset.",
+    "inputFormat": "import numpy as np\n\ny_true = np.array([1, 0, 1, 1, 0, 1])\ny_pred = np.array([1, 0, 1, 0, 0, 1])",
+    "outputFormat": "# 0.75",
+    "reason": "The recall value for the given true labels and predicted labels is 0.75. The model correctly identified 3 out of 4 positive instances in the dataset.",
+    "difficulty":"easy",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 61,
+    "title": "Implement F-Score Calculation for Binary Classification",
+    "qtext": "Task: Implement F-Score Calculation for Binary Classification\n\nYour task is to implement a function that calculates the F-Score for a binary classification task. The F-Score combines both Precision and Recall into a single metric, providing a balanced measure of a model's performance.\n\nWrite a function f_score(y_true, y_pred, beta) where:\n\ny_true: A numpy array of true labels (binary).\ny_pred: A numpy array of predicted labels (binary).\nbeta: A float value that adjusts the importance of Precision and Recall. When beta=1, it computes the F1-Score, a balanced measure of both Precision and Recall.\n\nThe function should return the F-Score rounded to three decimal places.\n\nExample:\nInput:\ny_true = np.array([1, 0, 1, 1, 0, 1])\ny_pred = np.array([1, 0, 1, 0, 0, 1])\nbeta = 1\n\nprint(f_score(y_true, y_pred, beta))\nOutput:\n0.857\n\nReasoning:\nThe F-Score for the binary classification task is calculated using the true labels, predicted labels, and beta value.",
+    "inputFormat": "y_true = np.array([1, 0, 1, 1, 0, 1])\ny_pred = np.array([1, 0, 1, 0, 0, 1])\nbeta = 1",
+    "outputFormat": "0.857",
+    "reason": "The F-Score for the binary classification task is calculated using the true labels, predicted labels, and beta value.",
+    "difficulty":"easy",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 86,
+    "title": "Detect Overfitting or Underfitting",
+    "qtext": "Write a Python function to determine whether a machine learning model is overfitting, underfitting, or performing well based on training and test accuracy values. The function should take two inputs: training_accuracy and test_accuracy. It should return one of three values: 1 if Overfitting, -1 if Underfitting, or 0 if a Good fit. The rules for determination are as follows:\n\nOverfitting: The training accuracy is significantly higher than the test accuracy (difference > 0.2).\nUnderfitting: Both training and test accuracy are below 0.7.\nGood fit: Neither of the above conditions is true.\n\nExample:\nInput:\ntraining_accuracy = 0.95, test_accuracy = 0.65\nOutput:\n'1'\n\nReasoning:\nThe training accuracy is much higher than the test accuracy (difference = 0.30 > 0.2). This indicates that the model is overfitting to the training data and generalizes poorly to unseen data.",
+    "inputFormat": "training_accuracy = 0.95, test_accuracy = 0.65",
+    "outputFormat": "'1'",
+    "reason": "The training accuracy is much higher than the test accuracy (difference = 0.30 > 0.2). This indicates that the model is overfitting to the training data and generalizes poorly to unseen data.",
+    "difficulty":"easy",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 21,
+    "title": "Pegasos Kernel SVM Implementation",
+    "qtext": "Write a Python function that implements a deterministic version of the Pegasos algorithm to train a kernel SVM classifier from scratch. The function should take a dataset (as a 2D NumPy array where each row represents a data sample and each column represents a feature), a label vector (1D NumPy array where each entry corresponds to the label of the sample), and training parameters such as the choice of kernel (linear or RBF), regularization parameter (lambda), and the number of iterations. Note that while the original Pegasos algorithm is stochastic (it selects a single random sample at each step), this problem requires using all samples in every iteration (i.e., no random sampling). The function should perform binary classification and return the model's alpha coefficients and bias.\n\nExample:\nInput:\ndata = np.array([[1, 2], [2, 3], [3, 1], [4, 1]]), labels = np.array([1, 1, -1, -1]), kernel = 'rbf', lambda_val = 0.01, iterations = 100\n\nOutput:\nalpha = [0.03, 0.02, 0.05, 0.01], b = -0.05\n\nReasoning:\nUsing the RBF kernel, the Pegasos algorithm iteratively updates the weights based on a sub-gradient descent method, taking into account the non-linear separability of the data induced by the kernel transformation.",
+    "inputFormat": "data = np.array([[1, 2], [2, 3], [3, 1], [4, 1]]), labels = np.array([1, 1, -1, -1]), kernel = 'rbf', lambda_val = 0.01, iterations = 100",
+    "outputFormat": "alpha = [0.03, 0.02, 0.05, 0.01], b = -0.05",
+    "reason": "Using the RBF kernel, the Pegasos algorithm iteratively updates the weights based on a sub-gradient descent method, taking into account the non-linear separability of the data induced by the kernel transformation.",
+    "difficulty":"hard",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 105,
+    "title": "Train Softmax Regression with Gradient Descent",
+    "qtext": "Implement a gradient descent-based training algorithm for Softmax regression. Your task is to compute model parameters using Cross Entropy loss and return the optimized coefficients along with collected loss values over iterations. Make sure to round your solution to 4 decimal places.\n\nExample:\nInput:\ntrain_softmaxreg(np.array([[0.5, -1.2], [-0.3, 1.1], [0.8, -0.6]]), np.array([0, 1, 2]), 0.01, 10)\n\nOutput:\n([[-0.0011, 0.0145, -0.0921], [0.002, -0.0598, 0.1263], [-0.0009, 0.0453, -0.0342]], [3.2958, 3.2611, 3.2272, 3.1941, 3.1618, 3.1302, 3.0993, 3.0692, 3.0398, 3.011])\n\nReasoning:\nThe function iteratively updates the Softmax regression parameters using gradient descent and collects loss values over iterations.",
+    "inputFormat": "train_softmaxreg(np.array([[0.5, -1.2], [-0.3, 1.1], [0.8, -0.6]]), np.array([0, 1, 2]), 0.01, 10)",
+    "outputFormat": "([[-0.0011, 0.0145, -0.0921], [0.002, -0.0598, 0.1263], [-0.0009, 0.0453, -0.0342]], [3.2958, 3.2611, 3.2272, 3.1941, 3.1618, 3.1302, 3.0993, 3.0692, 3.0398, 3.011])",
+    "reason": "The function iteratively updates the Softmax regression parameters using gradient descent and collects loss values over iterations.",
+    "difficulty":"hard",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 17,
+    "title": "K-Means Clustering",
+    "qtext": "Your task is to write a Python function that implements the k-Means clustering algorithm. This function should take specific inputs and produce a list of final centroids. k-Means clustering is a method used to partition n points into k clusters. The goal is to group similar points together and represent each group by its center (called the centroid).\n\nFunction Inputs:\npoints: A list of points, where each point is a tuple of coordinates (e.g., (x, y) for 2D points)\nk: An integer representing the number of clusters to form\ninitial_centroids: A list of initial centroid points, each a tuple of coordinates\nmax_iterations: An integer representing the maximum number of iterations to perform\n\nFunction Output:\nA list of the final centroids of the clusters, where each centroid is rounded to the nearest fourth decimal.\n\nExample:\nInput:\npoints = [(1, 2), (1, 4), (1, 0), (10, 2), (10, 4), (10, 0)], k = 2, initial_centroids = [(1, 1), (10, 1)], max_iterations = 10\n\nOutput:\n[(1, 2), (10, 2)]\n\nReasoning:\nGiven the initial centroids and a maximum of 10 iterations, the points are clustered around these points, and the centroids are updated to the mean of the assigned points, resulting in the final centroids which approximate the means of the two clusters. The exact number of iterations needed may vary, but the process will stop after 10 iterations at most.",
+    "inputFormat": "points = [(1, 2), (1, 4), (1, 0), (10, 2), (10, 4), (10, 0)], k = 2, initial_centroids = [(1, 1), (10, 1)], max_iterations = 10",
+    "outputFormat": "[(1, 2), (10, 2)]",
+    "reason": "Given the initial centroids and a maximum of 10 iterations, the points are clustered around these points, and the centroids are updated to the mean of the assigned points, resulting in the final centroids which approximate the means of the two clusters. The exact number of iterations needed may vary, but the process will stop after 10 iterations at most.",
+    "difficulty":"med",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 32,
+    "title": "Generate Polynomial Features",
+    "qtext": "Write a Python function to generate polynomial features for a given dataset. The function should take in a 2D numpy array X and an integer degree, and return a new 2D numpy array with polynomial features up to the specified degree.\n\nExample:\nInput:\nX = np.array([[2, 3],\n                  [3, 4],\n                  [5, 6]])\n    degree = 2\n    output = polynomial_features(X, degree)\n    print(output)\n\nOutput:\n[[  1.   2.   3.   4.   6.   9.]\n     [  1.   3.   4.   9.  12.  16.]\n     [  1.   5.   6.  25.  30.  36.]]\n\nReasoning:\nFor each sample in X, the function generates all polynomial combinations of the features up to the given degree. For degree=2, it includes combinations like [x1^0, x1^1, x1^2, x2^0, x2^1, x2^2, x1^1*x2^1], where x1 and x2 are the features.",
+    "inputFormat": "X = np.array([[2, 3],\n                  [3, 4],\n                  [5, 6]])\ndegree = 2",
+    "outputFormat": "[[  1.   2.   3.   4.   6.   9.]\n     [  1.   3.   4.   9.  12.  16.]\n     [  1.   5.   6.  25.  30.  36.]]",
+    "reason": "For each sample in X, the function generates all polynomial combinations of the features up to the given degree. For degree=2, it includes combinations like [x1^0, x1^1, x1^2, x2^0, x2^1, x2^2, x1^1*x2^1], where x1 and x2 are the features.",
+    "difficulty":"med",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 47,
+    "title": "Implement Gradient Descent Variants with MSE Loss",
+    "qtext": "In this problem, you need to implement a single function that can perform three variants of gradient descentâStochastic Gradient Descent (SGD), Batch Gradient Descent, and Mini-Batch Gradient Descentâusing Mean Squared Error (MSE) as the loss function. The function will take an additional parameter to specify which variant to use.\n\nExample:\nInput:\nimport numpy as np\n\n# Sample data\nX = np.array([[1, 1], [2, 1], [3, 1], [4, 1]])\ny = np.array([2, 3, 4, 5])\n\n# Parameters\nlearning_rate = 0.01\nn_iterations = 1000\nbatch_size = 2\n\n# Initialize weights\nweights = np.zeros(X.shape[1])\n\n# Test Batch Gradient Descent\nfinal_weights = gradient_descent(X, y, weights, learning_rate, n_iterations, method='batch')\n# Test Stochastic Gradient Descent\nfinal_weights = gradient_descent(X, y, weights, learning_rate, n_iterations, method='stochastic')\n# Test Mini-Batch Gradient Descent\nfinal_weights = gradient_descent(X, y, weights, learning_rate, n_iterations, batch_size, method='mini_batch')\n\nOutput:\n[float,float]\n[float, float]\n[float, float]\n\nReasoning:\nThe function should return the final weights after performing the specified variant of gradient descent.",
+    "inputFormat": "import numpy as np\n\n# Sample data\nX = np.array([[1, 1], [2, 1], [3, 1], [4, 1]])\ny = np.array([2, 3, 4, 5])\n\n# Parameters\nlearning_rate = 0.01\nn_iterations = 1000\nbatch_size = 2\n\n# Initialize weights\nweights = np.zeros(X.shape[1])\n\n# Test Batch Gradient Descent\nfinal_weights = gradient_descent(X, y, weights, learning_rate, n_iterations, method='batch')\n# Test Stochastic Gradient Descent\nfinal_weights = gradient_descent(X, y, weights, learning_rate, n_iterations, method='stochastic')\n# Test Mini-Batch Gradient Descent\nfinal_weights = gradient_descent(X, y, weights, learning_rate, n_iterations, batch_size, method='mini_batch')",
+    "outputFormat": "[float,float]\n[float, float]\n[float, float]",
+    "reason": "The function should return the final weights after performing the specified variant of gradient descent.",
+    "difficulty":"med",
+    "area" : "ML"
+  },
+
+  {
+    "qid": 88,
+    "title": "GPT-2 Text Generation",
+    "qtext": "Implement a Simplified GPT-2-like Text Generation Function\nYou are tasked with implementing a simplified GPT-2-like text generation function in Python. This function will incorporate the following components of a minimal GPT-2 architecture:\n\n- Token Embeddings: Map input tokens to dense vector representations.\n- Positional Embeddings: Add positional information to token embeddings.\n- Multi-head Attention: Attend to various parts of the sequence.\n- Feed-Forward Network: Process attention outputs through a dense layer.\n- Layer Normalization: Stabilize the training process.\n\nThe function must take in the following parameters:\n- Prompt: The initial text to guide the generation process.\n- Number of Tokens to Generate: Specify how many tokens to output.\n\nYour function should output the generated text.\n\nAdditionally, utilize the helper function `load_encoder_hparams_and_params` to retrieve:\n- A dummy encoder.\n- Model hyperparameters.\n- Model parameters.\n\nBuild your text generation logic around these components.\n\nExample:\nInput:\n```python\nprompt = \"hello\"\nn_tokens_to_generate = 5\n```\nOutput:\n```python\nworld <UNK> <UNK> <UNK> <UNK>\n```\n\nReasoning:\nThe function encodes the input \"hello\" into tokens using the dummy encoder, then runs a simplified GPT-2 forward pass to generate 5 tokens. Finally, it decodes the generated tokens back into text.",
+    "inputFormat": "Two inputs:\n- `prompt` (str): Initial text prompt for generation.\n- `n_tokens_to_generate` (int): Number of tokens to generate after the prompt.",
+    "outputFormat": "One output:\n- A string representing the generated text.",
+    "reason": "This exercise helps understand the core architecture of GPT-2 models, including embeddings, attention mechanisms, and autoregressive token generation. It highlights the role of each architectural component in text generation.",
+    "difficulty":"hard",
+    "area" : "NLP"
+  },
+
+  {
+    "qid": 51,
+    "title": "Optimal String Alignment Distance",
+    "qtext": "In this problem, you need to implement a function that calculates the Optimal String Alignment (OSA) distance between two given strings. The OSA distance represents the minimum number of edits required to transform one string into another. The allowed edit operations are:\n\n- Insert a character\n- Delete a character\n- Substitute a character\n- Transpose two adjacent characters\n\nEach of these operations costs 1 unit.\n\nYour task is to find the minimum number of edits needed to convert the first string (s1) into the second string (s2).\n\nExample:\nInput:\nsource = \"butterfly\"\ntarget = \"dragonfly\"\n\ndistance = OSA(source, target)\nprint(distance)\n\nOutput:\n6\n\nReasoning:\nThe OSA distance between the strings \"butterfly\" and \"dragonfly\" is 6. The minimum number of edits required to transform the source string into the target string is 6.",
+    "inputFormat": "source = \"butterfly\", target = \"dragonfly\"",
+    "outputFormat": "6",
+    "reason": "The OSA distance between the strings \"butterfly\" and \"dragonfly\" is 6. The minimum number of edits required to transform the source string into the target string is 6.",
+    "difficulty":"med",
+    "area" : "NLP"
+  },
+  
+  {
+    "qid": 60,
+    "title": "Implement TF-IDF (Term Frequency-Inverse Document Frequency)",
+    "qtext": "Task: Implement TF-IDF (Term Frequency-Inverse Document Frequency)\n\nYour task is to implement a function that computes the TF-IDF scores for a query against a given corpus of documents.\n\nFunction Signature\nWrite a function compute_tf_idf(corpus, query) that takes the following inputs:\n\ncorpus: A list of documents, where each document is a list of words.\nquery: A list of words for which you want to compute the TF-IDF scores.\n\nOutput\nThe function should return a list of lists containing the TF-IDF scores for the query words in each document, rounded to five decimal places.\n\nExample:\nInput:\ncorpus = [\n    [\"the\", \"cat\", \"sat\", \"on\", \"the\", \"mat\"],\n    [\"the\", \"dog\", \"chased\", \"the\", \"cat\"],\n    [\"the\", \"bird\", \"flew\", \"over\", \"the\", \"mat\"]\n]\nquery = [\"cat\"]\n\nprint(compute_tf_idf(corpus, query))\n\nOutput:\n[[0.21461], [0.25754], [0.0]]\n\nReasoning:\nThe TF-IDF scores for the word \"cat\" in each document are computed and rounded to five decimal places.",
+    "inputFormat": "corpus = [[\"the\", \"cat\", \"sat\", \"on\", \"the\", \"mat\"], [\"the\", \"dog\", \"chased\", \"the\", \"cat\"], [\"the\", \"bird\", \"flew\", \"over\", \"the\", \"mat\"]], query = [\"cat\"]",
+    "outputFormat": "[[0.21461], [0.25754], [0.0]]",
+    "reason": "The TF-IDF scores for the word \"cat\" in each document are computed and rounded to five decimal places.",
+    "difficulty":"med",
+    "area" : "NLP"
+  },
+
+  {
+    "qid": 110,
+    "title": "Evaluate Translation Quality with METEOR Score",
+    "qtext": "Develop a function to compute the METEOR score for evaluating machine translation quality. Given a reference translation and a candidate translation, calculate the score based on unigram matches, precision, recall, F-mean, and a penalty for word order fragmentation.\n\nExample:\nInput:\n```python\nmeteor_score('Rain falls gently from the sky', 'Gentle rain drops from the sky')\n```\nOutput:\n```python\n0.625\n```\n\nReasoning:\nThe function identifies 4 unigram matches ('rain', 'gently'/'gentle', 'from', 'sky'), computes precision (4/6) and recall (4/5), calculates an F-mean, and then applies a small penalty for two chunks.",
+    "inputFormat": "Two inputs:\n- `reference` (str): The reference translation string.\n- `candidate` (str): The candidate translation string.",
+    "outputFormat": "One output:\n- A float value representing the METEOR score, rounded to three decimal places.",
+    "reason": "The METEOR score balances precision, recall, and word order considerations, making it a more human-aligned metric compared to older evaluation methods like BLEU. The score penalizes fragmented matches through the penalty term, favoring translations with contiguous matching sequences.",
+    "difficulty":"med",
+    "area" : "NLP"
+  },
+
+  {
+    "qid": 81,
+    "title": "Poisson Distribution Probability Calculator",
+    "qtext": "Write a Python function to calculate the probability of observing exactly k events in a fixed interval using the Poisson distribution formula. The function should take k (number of events) and lam (mean rate of occurrences) as inputs and return the probability rounded to 5 decimal places.\n\nExample:\nInput:\n```python\nk = 3, lam = 5\n```\nOutput:\n```python\n0.14037\n```\n\nReasoning:\nThe function calculates the probability for a given number of events occurring in a fixed interval, based on the mean rate of occurrences.",
+    "inputFormat": "Two inputs:\n- An integer k representing the number of events.\n- A float lam representing the mean rate of occurrences.",
+    "outputFormat": "One output:\n- A float representing the Poisson probability rounded to 5 decimal places.",
+    "reason": "The Poisson distribution models the probability of a given number of events happening in a fixed interval when the events occur independently at a constant mean rate.",
+    "difficulty":"easy",
+    "area" : "Prob"
+  },
+
+  {
+    "qid": 79,
+    "title": "Binomial Distribution Probability",
+    "qtext": "Write a Python function to calculate the probability of achieving exactly k successes in n independent Bernoulli trials, each with probability p of success, using the Binomial distribution formula.\n\nExample:\nInput:\n```python\nn = 6, k = 2, p = 0.5\n```\nOutput:\n```python\n0.23438\n```\n\nReasoning:\nThe function calculates the Binomial probability, the intermediate steps include calculating the binomial coefficient, raising p and (1-p) to the appropriate powers, and multiplying the results.",
+    "inputFormat": "Three inputs:\n- An integer n representing the number of trials.\n- An integer k representing the number of successes.\n- A float p representing the probability of success on each trial.",
+    "outputFormat": "One output:\n- A float representing the binomial probability rounded to 5 decimal places.",
+    "reason": "The Binomial distribution models the probability of a fixed number of successes in a set number of independent trials with a constant success probability.",
+    "difficulty":"med",
+    "area" : "Prob"
+  },
+
+  {
+    "qid": 10,
+    "title": "Calculate Covariance Matrix",
+    "qtext": "Write a Python function to calculate the covariance matrix for a given set of vectors. The function should take a list of lists, where each inner list represents a feature with its observations, and return a covariance matrix as a list of lists. Additionally, provide test cases to verify the correctness of your implementation.\n\nExample:\nInput:\n```python\n[[1, 2, 3], [4, 5, 6]]\n```\nOutput:\n```python\n[[1.0, 1.0], [1.0, 1.0]]\n```\n\nReasoning:\nThe covariance between the two features is calculated based on their deviations from the mean. For the given vectors, both covariances are 1.0, resulting in a symmetric covariance matrix.",
+    "inputFormat": "One input:\n- A list of lists, where each inner list represents a feature and its observations across samples.",
+    "outputFormat": "One output:\n- A list of lists representing the covariance matrix with each value rounded appropriately (default Python float precision).",
+    "reason": "Calculating the covariance matrix helps quantify how features vary together in a dataset. It is a fundamental operation used in multivariate statistics and machine learning, providing insights into feature relationships.",
+    "difficulty":"easy",
+    "area" : "Stats"
+  },
+
+  {
+    "qid": 111,
+    "title": "Descriptive Statistics Calculator",
+    "qtext": "Write a Python function to calculate various descriptive statistics metrics for a given dataset. The function should take a list or NumPy array of numerical values and return a dictionary containing mean, median, mode, variance, standard deviation, percentiles (25th, 50th, 75th), and interquartile range (IQR).\n\nExample:\nInput:\n```python\n[10, 20, 30, 40, 50]\n```\nOutput:\n```python\n{'mean': 30.0, 'median': 30.0, 'mode': 10, 'variance': 200.0, 'standard_deviation': 14.142135623730951, '25th_percentile': 20.0, '50th_percentile': 30.0, '75th_percentile': 40.0, 'interquartile_range': 20.0}\n```\n\nReasoning:\nThe dataset is processed to calculate all descriptive statistics. The mean is the average value, the median is the central value, the mode is the most frequent value, and variance and standard deviation measure the spread of data. Percentiles and IQR describe data distribution.",
+    "inputFormat": "One input:\n- A list or NumPy array of numerical values.",
+    "outputFormat": "One output:\n- A dictionary containing mean, median, mode, variance, standard deviation, 25th percentile, 50th percentile, 75th percentile, and interquartile range.",
+    "reason": "Descriptive statistics provide a summary of the data, allowing for a deeper understanding of its structure, central tendency, variability, and distribution, which are crucial for exploratory data analysis and model preparation.",
+    "difficulty":"easy",
+    "area" : "Stats"
+  },
+
+  {
+    "qid": 95,
+    "title": "Calculate the Phi Coefficient",
+    "qtext": "Implement a function to calculate the Phi coefficient, a measure of the correlation between two binary variables. The function should take two lists of integers (0s and 1s) as input and return the Phi coefficient rounded to 4 decimal places.\n\nExample:\nInput:\n```python\nphi_corr([1, 1, 0, 0], [0, 0, 1, 1])\n```\nOutput:\n```python\n-1.0\n```\n\nReasoning:\nThe Phi coefficient measures the correlation between two binary variables. In this example, the variables have a perfect negative correlation, resulting in a Phi coefficient of -1.0.",
+    "inputFormat": "One input:\n- Two lists of integers containing only 0s and 1s.",
+    "outputFormat": "One output:\n- A float representing the Phi coefficient rounded to 4 decimal places.",
+    "reason": "The Phi coefficient helps understand the degree of association between two binary variables. It ranges from -1 (perfect negative correlation) to 1 (perfect positive correlation), with 0 indicating no correlation.",
+    "difficulty":"easy",
+    "area" : "Stats"
+  }
+]
+  
